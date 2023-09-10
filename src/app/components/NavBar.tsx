@@ -10,7 +10,16 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Divider, Layout, Menu, MenuProps, Space, Switch } from "antd";
+import {
+  ConfigProvider,
+  Divider,
+  Layout,
+  Menu,
+  MenuProps,
+  Space,
+  Switch,
+} from "antd";
+import { createStyles } from "antd-style";
 import React from "react";
 import { useColorModeStore } from "../store/colorModeStore";
 const { Header, Content, Footer, Sider } = Layout;
@@ -29,6 +38,21 @@ const items: MenuProps["items"] = [
   icon: React.createElement(icon),
   label: `nav ${index + 1}`,
 }));
+
+export const useButtonStyle = () => {
+  const { getPrefixCls } = React.useContext(ConfigProvider.ConfigContext);
+  const btnPrefixCls = getPrefixCls("btn");
+
+  // Customize styles
+  return createStyles(({ css }) => ({
+    btn: css`
+      background: red;
+      .${btnPrefixCls}-icon {
+        color: green;
+      }
+    `,
+  }))();
+};
 
 export default function NavBar() {
   const isLightMode = useColorModeStore((state) => state.isLightMode);
@@ -66,7 +90,10 @@ export default function NavBar() {
         <div style={{ paddingLeft: 24 }}>
           <Space>
             Dark
-            <Switch onChange={(e) => setMode(e)} defaultChecked />
+            <Switch
+              onChange={() => setMode()}
+              checked={isLightMode ? true : false}
+            />
             Light
           </Space>
         </div>
