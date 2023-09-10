@@ -14,6 +14,6 @@ export const customTheme: ThemeConfig = {
   token: {
     fontFamily: inter.style.fontFamily,
   },
- 
+  
   
 };
