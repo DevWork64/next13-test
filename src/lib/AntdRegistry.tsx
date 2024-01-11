@@ -18,7 +18,6 @@ const StyledComponentsRegistry = ({
     };
   }
   const cache = createCache();
-  console.log(cache);
   useServerInsertedHTML(() => (
     <style
       id="antd"

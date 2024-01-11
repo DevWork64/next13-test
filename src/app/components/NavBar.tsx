@@ -126,7 +126,7 @@ export default function NavBar() {
       theme={{
         components: {
           Menu: {
-            darkItemBg: "red",
+            darkItemBg: "#0D1219",
           },
         },
       }}

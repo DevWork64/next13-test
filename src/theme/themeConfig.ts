@@ -13,7 +13,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const customTheme: ThemeConfig = {
   token: {
     fontFamily: inter.style.fontFamily,
+
   },
+  algorithm: theme.darkAlgorithm
   
   
 };

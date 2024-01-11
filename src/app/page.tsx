@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button, ConfigProvider, Menu, MenuProps } from "antd";
 import PageHeader from "./components/PageHeader";
