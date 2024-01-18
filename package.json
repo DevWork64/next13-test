@@ -21,6 +21,7 @@
     "eslint-config-next": "13.4.13",
     "immer": "^10.0.2",
     "next": "13.4.13",
+    "rc-queue-anim": "^2.0.0",
     "react": "18.2.0",
     "react-collapse": "^5.1.1",
     "react-dom": "18.2.0",
