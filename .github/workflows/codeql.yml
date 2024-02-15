@@ -17,11 +17,19 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Setup CodeQL
-      uses: github/codeql-action/setup-codeql@v2
+      uses: github/codeql-action/setup-codeql@v1
+      with:
+        codeql-version: 'latest'
+
+    - name: Verify CodeQL setup
+      run: |
+        codeql --version
+        codeql database create --language=javascript --source-root . --database my-database
+      env:
+        CODEQL_ACTION: 'codeql'
 
     - name: Run CodeQL analysis
       run: |
-        codeql database create --language=javascript --source-root . --database my-database
         codeql analyze --sarif -o codeql-results.sarif
       env:
         CODEQL_ACTION: 'codeql'
