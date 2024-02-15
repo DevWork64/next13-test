@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v2
 
     - name: Build CodeQL database
       run: |
@@ -27,11 +27,11 @@ jobs:
 
     - name: Run CodeQL analysis
       run: |
-        codeql database analyze my-database --format=sarif-latest -o codeql-results.sarif
+        codeql analyze --sarif -o codeql-results.sarif
       env:
         CODEQL_ACTION: 'codeql'
 
     - name: Upload CodeQL results
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: codeql-results.sarif
