@@ -1,0 +1,37 @@
+name: CodeQL Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  codeql-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+
+    - name: Build CodeQL database
+      run: |
+        codeql database create --language=javascript --source-root . --database my-database
+      env:
+        CODEQL_ACTION: 'codeql'
+
+    - name: Run CodeQL analysis
+      run: |
+        codeql database analyze my-database --format=sarif-latest -o codeql-results.sarif
+      env:
+        CODEQL_ACTION: 'codeql'
+
+    - name: Upload CodeQL results
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: codeql-results.sarif
